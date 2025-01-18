@@ -54,7 +54,7 @@ class VoxelEngine():
         #    f'选中块 : {self.scene.world.voxelHandler.voxel_local_pos} | '
         #    f'{self.scene.world.voxelHandler.voxel_world_pos} | '
         #    f'id : {self.scene.world.voxelHandler.voxel_id} | '
-        #    f'chunk : {id(self.scene.world.voxelHandler.chunk)}| '
+            f'chunk : {id(self.scene.world.voxelHandler.chunk)}| '
             f'面朝方向 : {self.player.FORWARD}'
         )
 
