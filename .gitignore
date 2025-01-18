@@ -1,2 +1,7 @@
-.gitignore
-log/latest.txt
+log/
+__pycache__
+sd
+meshes/__pycache__
+world_objection\__pycache__
+assets
+.vscode
