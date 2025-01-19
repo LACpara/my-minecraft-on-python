@@ -1,6 +1,6 @@
 from settings import *
 from meshes.chunk_mesh import Chunk_mesh
-from world_objection.terrain_gen import get_height
+from world_objection.terrain_gen import get_height, get_index, set_voxel_id
 import glm
 
 class Chunk():
@@ -57,6 +57,4 @@ class Chunk():
                 y = -1
                 for y in range(local_height):
                     wy = y + cy
-                    voxels[x + CHUNK_SIZE * z + CHUNK_AREA * y] = DIRT
-                if y < CHUNK_SIZE and y != -1:
-                    voxels[x + CHUNK_SIZE * z + CHUNK_AREA * y] = GRASS
+                    set_voxel_id(voxels, x, y, z, wx, wy, wz, world_height)

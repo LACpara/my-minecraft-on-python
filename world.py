@@ -12,7 +12,7 @@ class World():
         self.build_chunk_mesh()
         self.voxelHandler = VoxelHandler(self)
 
-    @log_write("world.build_chunks")
+    # @log_write("world.build_chunks")
     def build_chunks(self):
         "world gnerate"
         for x in range(WORLD_W):
@@ -24,7 +24,7 @@ class World():
                     self.voxels[chunk_index] = chunk.buid_voxels()
                     chunk.voxels = self.voxels[chunk_index]
 
-    @log_write("world.build_chunk_mesh")
+    # @log_write("world.build_chunk_mesh")
     def build_chunk_mesh(self):
         print(WORLD_VOL)
         for chunk in self.chunks:

@@ -107,19 +107,21 @@ def build_chunk_mesh(chunk_voxels, format_size, chunk_pos, word_voxels):
     vertex_data = np.empty(CHUNK_VOL * 18 * format_size, dtype=np.uint32)
     index = 0
 
-    count = 1
-    max_index = 0
+    # test begin
+    # count = 1
+    # max_index = 0
+    # test end
 
     for x in range(CHUNK_SIZE):
         for y in range(CHUNK_SIZE):
             for z in range(CHUNK_SIZE):
                 # test begin
-                index_tmp = x + CHUNK_SIZE * z + CHUNK_AREA * y
-                max_index = max_index if max_index > index_tmp else index_tmp
-                test_flg = True if index_tmp == 21937 else False
-                if test_flg:
-                    print(count, x, y, z, max_index, index_tmp)
-                count += 1
+                # index_tmp = x + CHUNK_SIZE * z + CHUNK_AREA * y
+                # max_index = max_index if max_index > index_tmp else index_tmp
+                # test_flg = True if index_tmp == 21937 else False
+                # if test_flg:
+                #     print(count, x, y, z, max_index, index_tmp)
+                # count += 1
                 # test end
 
                 voxel_id = chunk_voxels[x + CHUNK_SIZE * z + CHUNK_AREA * y]
@@ -139,8 +141,8 @@ def build_chunk_mesh(chunk_voxels, format_size, chunk_pos, word_voxels):
                 wz = z + cz * CHUNK_SIZE
 
                 # test begin
-                if test_flg:
-                    print("第一次调用 is_void, 计算顶面")
+                # if test_flg:
+                #     print("第一次调用 is_void, 计算顶面")
                 # test end
 
                 # 通过定义每个面的顶点坐标位置及属性来构建数组
@@ -148,30 +150,30 @@ def build_chunk_mesh(chunk_voxels, format_size, chunk_pos, word_voxels):
                 # 顶面
                 if is_void((x, y + 1, z), (wx, wy + 1, wz), word_voxels):
 
-                    if test_flg:
-                        print("is_void 调用一切正常, 开始调用 get_vao")
+                    # if test_flg:
+                    #     print("is_void 调用一切正常, 开始调用 get_vao")
 
                     ao = get_ao((x, y+1, z), (wx, wy+1, wz), word_voxels, plane='Y')
 
-                    if test_flg:
-                        print("get_ao 调用一切正常, 开始数据打包")
+                    # if test_flg:
+                    #     print("get_ao 调用一切正常, 开始数据打包")
 
                     v0 = pack_data(x, y+1, z, voxel_id, 0, ao[0], flip_id)
                     v1 = pack_data(x+1, y+1, z, voxel_id, 0, ao[1], flip_id)
                     v2 = pack_data(x+1, y+1, z+1, voxel_id, 0, ao[2], flip_id)
                     v3 = pack_data(x, y+1, z+1, voxel_id, 0, ao[3], flip_id)
 
-                    if test_flg:
-                        print("数据打包一切正常, 开始写入数据")
+                    # if test_flg:
+                    #     print("数据打包一切正常, 开始写入数据")
 
                     index =  add_packed_data(vertex_data, index, v0, v3, v2, v0, v2, v1)
 
-                    if test_flg:
-                        print("数据写入正常， over")
+                    # if test_flg:
+                    #     print("数据写入正常， over")
                     
                 # test begin
-                if test_flg:
-                    print("第二次调用 is_void, 计算底面")
+                # if test_flg:
+                #     print("第二次调用 is_void, 计算底面")
                 # test end
 
                 # 底面
@@ -186,8 +188,8 @@ def build_chunk_mesh(chunk_voxels, format_size, chunk_pos, word_voxels):
                     index = add_packed_data(vertex_data, index, v0, v2, v3, v0, v1, v2)
 
                 # test begin
-                if test_flg:
-                    print("第三次调用 is_void, 计算右面")
+                # if test_flg:
+                #     print("第三次调用 is_void, 计算右面")
                 # test end
 
                 # 右面
@@ -202,8 +204,8 @@ def build_chunk_mesh(chunk_voxels, format_size, chunk_pos, word_voxels):
                     index = add_packed_data(vertex_data, index, v0, v1, v2, v0, v2, v3)
 
                 # test begin
-                if test_flg:
-                    print("第四次调用 is_void, 计算左面")
+                # if test_flg:
+                #     print("第四次调用 is_void, 计算左面")
                 # test end
 
                 # 左面
@@ -219,8 +221,8 @@ def build_chunk_mesh(chunk_voxels, format_size, chunk_pos, word_voxels):
 
 
                 # test begin
-                if test_flg:
-                    print("第五次调用 is_void, 计算后面")
+                # if test_flg:
+                #     print("第五次调用 is_void, 计算后面")
                 # test end
                 
                 # 后面
@@ -235,8 +237,8 @@ def build_chunk_mesh(chunk_voxels, format_size, chunk_pos, word_voxels):
                     index = add_packed_data(vertex_data, index, v0, v1, v2, v0, v2, v3)
 
                 # test begin
-                if test_flg:
-                    print("第六次调用 is_void, 计算前面")
+                # if test_flg:
+                #     print("第六次调用 is_void, 计算前面")
                 # test end
 
                 # 前面

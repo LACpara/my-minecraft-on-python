@@ -27,7 +27,7 @@ class Chunk_mesh(BaseMesh):
     def rebuild(self):
         self.vao= self.get_vao()
 
-    @log_write("mesh.get_vertex_data")
+    # @log_write("mesh.get_vertex_data")
     def get_vertex_data(self):
         mesh = build_chunk_mesh(
             chunk_voxels=self.chunk.voxels,
